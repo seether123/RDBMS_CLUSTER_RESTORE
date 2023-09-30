@@ -5,7 +5,7 @@ python_output=$(python3 restore.py)
 
 # Check the Python script's output and execute another script based on it
 case "$python_output" in
-          *"Snapshots created today for cluster"*)
+          *"Snapshots created yesterday for cluster"*)
             echo "snaphshot has been created, please wait we are working on restoring and creating a new rds cluster....."
             python3 rds_instance.py
             python3 get_cluster_endpoint.py
