@@ -7,7 +7,7 @@ if __name__ == '__main__':
     snapshot_manager = RDSSnapshotManager(RDS_REGION, RDS_CLUSTER_IDENTIFIER)
 
     # List snapshots created today for the specified RDS cluster
-    snapshot_manager.list_snapshots_created_today()
+    snapshot_manager.list_snapshots_created_yesterday()
 
     # Check if a source snapshot was found and print it
     if snapshot_manager.source_snapshot_identifier:
