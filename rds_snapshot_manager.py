@@ -32,7 +32,7 @@ class RDSSnapshotManager:
             # Store the first snapshot in the list as the source snapshot identifier
             self.source_snapshot_identifier = snapshot_names[0]
         else:
-            print(f"No snapshots created today for cluster {self.cluster_identifier}.")
+            print(f"No snapshots created yesterday for cluster {self.cluster_identifier}.")
 
 
     def restore_cluster_from_snapshot(self, new_cluster_identifier):
