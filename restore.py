@@ -12,7 +12,6 @@ if __name__ == '__main__':
     # Check if a source snapshot was found and print it
     if snapshot_manager.source_snapshot_identifier:
         print(f"Source snapshot identifier: {snapshot_manager.source_snapshot_identifier}")
+        snapshot_manager.restore_cluster_from_snapshot(NEW_CLUSTER_IDENTIFIER)
     else:
         print("No source snapshot available.")
-    new_cluster_identifier = 'new-cluster-identifier'  # Replace with your desired cluster identifier
-    snapshot_manager.restore_cluster_from_snapshot(NEW_CLUSTER_IDENTIFIER)
