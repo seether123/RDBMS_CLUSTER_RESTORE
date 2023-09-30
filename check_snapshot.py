@@ -40,6 +40,6 @@ if __name__ == '__main__':
 
     # Check if a source snapshot was found and print it
     if snapshot_manager.source_snapshot_identifier:
-        print(f"Source snapshot identifier: {snapshot_manager.source_snapshot_identifier}")
+        print(f"Source snapshot identifier of yesterday: {snapshot_manager.source_snapshot_identifier}")
     else:
         print("No source snapshot available.")
