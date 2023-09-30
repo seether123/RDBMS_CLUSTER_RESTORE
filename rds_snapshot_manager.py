@@ -8,20 +8,21 @@ class RDSSnapshotManager:
         self.rds_client = boto3.client('rds', region_name=region)
         self.source_snapshot_identifier = None  # Initialize as None
 
-    def list_snapshots_created_today(self):
+    def list_snapshots_created_yesterday(self):
         # List the snapshots for the specified RDS cluster
         response = self.rds_client.describe_db_cluster_snapshots(DBClusterIdentifier=self.cluster_identifier)
 
         # Get the current date
         current_date = datetime.now()
-        one_day_ago = current_date - timedelta(days=1)
+        desired_date = current_date - timedelta(days=1)
+        desired_date = desired_date.replace(hour=0, minute=0, second=0, microsecond=0)
 
         # Extract and print the snapshot names created today
         snapshot_names = []
 
         for snapshot in response['DBClusterSnapshots']:
             snapshot_creation_date = snapshot['SnapshotCreateTime'].replace(tzinfo=None)
-            if snapshot_creation_date >= one_day_ago and snapshot_creation_date < current_date and snapshot['SnapshotType'] == 'automated':
+            if snapshot_creation_date.date() == desired_date.date() and snapshot['SnapshotType'] == 'automated':
                 snapshot_names.append(snapshot['DBClusterSnapshotIdentifier'])
 
         if snapshot_names:
